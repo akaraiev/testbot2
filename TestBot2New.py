@@ -114,7 +114,6 @@ def bot_messages(request, mycursor, mydb):
     if results!=0:
         k = 0
         while k<len(results):
-            get_updates_json(request, results[k]['update_id']+1)
             first_result = results[k]
             person_id = first_result['message']['from']['id']
             sql = "SELECT * FROM `bot_users` WHERE `telegram_id` = %(tg_id)s"
@@ -1517,6 +1516,7 @@ def bot_messages(request, mycursor, mydb):
             else:
                 print(str(datetime.datetime.utcfromtimestamp(first_result['message']['date'])) + ' '
                       + first_result['message']['from']['first_name']+': '+'No text')
+        get_updates_json(request, results[k-1]['update_id']+1)
         
 
 def main():
