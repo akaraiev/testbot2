@@ -82,7 +82,7 @@ answers = ['4',
            ]
 
 def get_updates_json(request, offset_id='None'):  
-    params = {'timeout': 30, 'offset': offset_id, 'allowed_updates': json.dumps(["message"])}
+    params = {'timeout': 10, 'offset': offset_id, 'allowed_updates': json.dumps(["message"])}
     response = requests.get(request + 'getUpdates', data=params)
     return response.json()
 
