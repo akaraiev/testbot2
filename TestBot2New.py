@@ -6,11 +6,11 @@ import time
 
 url = "https://api.telegram.org/bot693890599:AAGbF6y6BFJGBgVJLNIGjnmxKfXzxJeKKnY/"
 
-time_start =  1583415000
+time_start =  1583445600
 
-time_frozen = 1583416800
+time_frozen = 1583532000
 
-time_finish = 1583417400
+time_finish = 1583532000
 
 keyboard_admin = json.dumps({'keyboard':[['Вопросы'], ['Сообщение участникам']],'resize_keyboard': True })
 keyboard_admin_message = json.dumps({'keyboard':[['Все пользователи'], ['Все зарегистрированные пользователи'], ['Все пользователи в игре'], ['Назад']],'resize_keyboard': True })
