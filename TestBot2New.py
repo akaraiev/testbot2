@@ -1517,8 +1517,6 @@ def bot_messages(request, mycursor, mydb):
                 print(str(datetime.datetime.utcfromtimestamp(first_result['message']['date'])) + ' '
                       + first_result['message']['from']['first_name']+': '+'No text')
         get_updates_json(request, results[k-1]['update_id']+1)
-    else:
-        print('No new messages')
 
 def main():
     while True:
@@ -1530,5 +1528,6 @@ def main():
         )
         mycursor = mydb.cursor()
         bot_messages(url, mycursor, mydb)
+        requests.post('https://rocky-plateau-72509.herokuapp.com/', json={'key':'value'})
         
 main()
