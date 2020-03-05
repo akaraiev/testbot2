@@ -1521,14 +1521,14 @@ def bot_messages(request, mycursor, mydb):
         print('No new messages')
 
 def main():
-    mydb = mysql.connector.connect(
-      host="energy-storm.com.ua",
-      user="energ2_telegram_bot_admin",
-      passwd="Fef2020*",
-      database="energ2_telegram_bot_test"
-    )
-    mycursor = mydb.cursor()
     while True:
+        mydb = mysql.connector.connect(
+          host="energy-storm.com.ua",
+          user="energ2_telegram_bot_admin",
+          passwd="Fef2020*",
+          database="energ2_telegram_bot_test"
+        )
+        mycursor = mydb.cursor()
         bot_messages(url, mycursor, mydb)
         
 main()
