@@ -1521,7 +1521,7 @@ def bot_messages(request, mycursor, mydb):
 
 def main():
     sock = socket.socket()
-    sock.bind(('', 5000))
+    sock.bind(('https://rocky-plateau-72509.herokuapp.com/', 5000))
     sock.listen(1)
     conn, addr = sock.accept()
     mydb = mysql.connector.connect(
