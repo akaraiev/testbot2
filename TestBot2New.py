@@ -1517,6 +1517,8 @@ def bot_messages(request, mycursor, mydb):
                 print(str(datetime.datetime.utcfromtimestamp(first_result['message']['date'])) + ' '
                       + first_result['message']['from']['first_name']+': '+'No text')
         get_updates_json(request, results[k-1]['update_id']+1)
+    else:
+        print('No new messages')
 
 def main():
     mydb = mysql.connector.connect(
