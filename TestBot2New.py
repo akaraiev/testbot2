@@ -3,6 +3,7 @@ import mysql.connector
 import json
 import datetime
 import time
+import socket
 
 url = "https://api.telegram.org/bot693890599:AAGbF6y6BFJGBgVJLNIGjnmxKfXzxJeKKnY/"
 
@@ -1519,15 +1520,18 @@ def bot_messages(request, mycursor, mydb):
         get_updates_json(request, results[k-1]['update_id']+1)
 
 def main():
-    while True:
-        mydb = mysql.connector.connect(
+    sock = socket.socket()
+    sock.bind(('', 9090))
+    sock.listen(1)
+    conn, addr = sock.accept()
+    mydb = mysql.connector.connect(
           host="energy-storm.com.ua",
           user="energ2_telegram_bot_admin",
           passwd="Fef2020*",
           database="energ2_telegram_bot_test"
         )
-        mycursor = mydb.cursor()
+    mycursor = mydb.cursor()
+    while True: 
         bot_messages(url, mycursor, mydb)
-        requests.get('https://rocky-plateau-72509.herokuapp.com/')
         
 main()
