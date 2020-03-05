@@ -1521,9 +1521,7 @@ def bot_messages(request, mycursor, mydb):
 
 def main():
     sock = socket.socket()
-    sock.bind(('https://rocky-plateau-72509.herokuapp.com/', 5000))
-    sock.listen(1)
-    conn, addr = sock.accept()
+    sock.bind(('', 5000))
     mydb = mysql.connector.connect(
           host="energy-storm.com.ua",
           user="energ2_telegram_bot_admin",
@@ -1531,7 +1529,10 @@ def main():
           database="energ2_telegram_bot_test"
         )
     mycursor = mydb.cursor()
-    while True: 
+    while True:
+        sock.bind(('', 5000))
+        sock.listen(1)
+        conn, addr = sock.accept()
         bot_messages(url, mycursor, mydb)
         
 main()
