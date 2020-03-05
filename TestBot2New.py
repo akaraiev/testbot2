@@ -1528,6 +1528,6 @@ def main():
         )
         mycursor = mydb.cursor()
         bot_messages(url, mycursor, mydb)
-        requests.post('https://rocky-plateau-72509.herokuapp.com/', json={'key':'value'})
+        requests.get('https://rocky-plateau-72509.herokuapp.com/')
         
 main()
