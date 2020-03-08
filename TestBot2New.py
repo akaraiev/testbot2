@@ -549,8 +549,6 @@ def bot_messages(request, mycursor, mydb):
                                                         sql = ("SELECT is_reg FROM bot_users WHERE telegram_id = %(tg_id)s")
                                                         mycursor.execute(sql, {'tg_id': i[0]})
                                                         myresult2 = mycursor.fetchall()
-                                                        print(myresult2[0][0])
-                                                        print(i[0])
                                                         if myresult2[0][0]:
                                                             send_mess(i[0], message, keyboard_game)
                                                             send_mess(i[0], 'Текущие результаты!', keyboard_results)
@@ -725,8 +723,6 @@ def bot_messages(request, mycursor, mydb):
                                                         sql = ("SELECT is_reg FROM bot_users WHERE telegram_id = %(tg_id)s")
                                                         mycursor.execute(sql, {'tg_id': i[0]})
                                                         myresult2 = mycursor.fetchall()
-                                                        print(myresult2[0][0])
-                                                        print(i[0])
                                                         if myresult2[0][0]:
                                                             send_mess(i[0], message, keyboard_game)
                                                             send_mess(i[0], 'Текущие результаты!', keyboard_results)
