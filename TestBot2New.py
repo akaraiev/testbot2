@@ -562,10 +562,10 @@ def bot_messages(request, mycursor, mydb):
                                                                        " Введите, пожалуйста, идентификатор другой команды.")
                                                             send_mess(i[0], message2, keyboard_cancel)
                                                             sql = ("UPDATE bot_users SET status = 7 WHERE telegram_id = %(tg_id)s")
-                                                            mycursor.execute(update_status, {'tg_id': i[0]})
+                                                            mycursor.execute(sql, {'tg_id': i[0]})
                                                             mydb.commit()
                                                             sql = ("DELETE FROM team_members WHERE telegram_id = %(tg_id)s")
-                                                            mycursor.execute(update_status, {'tg_id': i[0]})
+                                                            mycursor.execute(sql, {'tg_id': i[0]})
                                                             mydb.commit()
                                                             
                                     else:
@@ -738,10 +738,10 @@ def bot_messages(request, mycursor, mydb):
                                                                        " Введите, пожалуйста, идентификатор ругой команды.")
                                                             send_mess(i[0], message2, keyboard_cancel)
                                                             sql = ("UPDATE bot_users SET status = 7 WHERE telegram_id = %(tg_id)s")
-                                                            mycursor.execute(update_status, {'tg_id': i[0]})
+                                                            mycursor.execute(sql, {'tg_id': i[0]})
                                                             mydb.commit()
                                                             sql = ("DELETE FROM team_members WHERE telegram_id = %(tg_id)s")
-                                                            mycursor.execute(update_status, {'tg_id': i[0]})
+                                                            mycursor.execute(sql, {'tg_id': i[0]})
                                                             mydb.commit()
                                                         
                                     else:
