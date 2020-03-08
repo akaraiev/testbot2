@@ -549,7 +549,7 @@ def bot_messages(request, mycursor, mydb):
                                                         sql = ("SELECT is_reg FROM bot_users WHERE telegram_id = %(tg_id)s")
                                                         mycursor.execute(sql, {'tg_id': i[0]})
                                                         myresult2 = mycursor.fetchall()
-                                                        if myresult2[0]:
+                                                        if myresult2[0][0]:
                                                             send_mess(i[0], message, keyboard_game)
                                                             send_mess(i[0], 'Текущие результаты!', keyboard_results)
                                                             update_status = ("UPDATE `team_members` SET `in_game` = 1 WHERE `telegram_id` = %(tg_id)s")
@@ -557,7 +557,7 @@ def bot_messages(request, mycursor, mydb):
                                                             mydb.commit()
                                                         else:
                                                             message2 = ("Команда, в которую Вы пытались добавиться, только что начала игру."
-                                                                       " Введите, пожалуйста, идентификатор ругой команды.")
+                                                                       " Введите, пожалуйста, идентификатор другой команды.")
                                                             send_mess(i[0], message2, keyboard_cancel)
                                                             sql = ("UPDATE bot_users SET status = 7 WHERE telegram_id = %(tg_id)s")
                                                             mycursor.execute(update_status, {'tg_id': i[0]})
@@ -723,7 +723,7 @@ def bot_messages(request, mycursor, mydb):
                                                         sql = ("SELECT is_reg FROM bot_users WHERE telegram_id = %(tg_id)s")
                                                         mycursor.execute(sql, {'tg_id': i[0]})
                                                         myresult2 = mycursor.fetchall()
-                                                        if myresult2[0]:
+                                                        if myresult2[0][0]:
                                                             send_mess(i[0], message, keyboard_game)
                                                             send_mess(i[0], 'Текущие результаты!', keyboard_results)
                                                             update_status = ("UPDATE `team_members` SET `in_game` = 1 WHERE `telegram_id` = %(tg_id)s")
@@ -1536,7 +1536,7 @@ def bot_messages(request, mycursor, mydb):
                             update_status = ("UPDATE bot_users SET status = 1 WHERE telegram_id = %(tg_id)s")
                             mycursor.execute(update_status, {'tg_id': person_id})
                             mydb.commit()
-                            sql = ('SELECT `telegram_id` FROM `bot_users` WHERE `in_game` = 1')
+                            sql = ('SELECT `telegram_id` FROM `team_members` WHERE `in_game` = 1')
                             mycursor.execute(sql)
                             myresult = mycursor.fetchall()
                             if not myresult:
