@@ -407,7 +407,7 @@ def bot_messages(request, mycursor, mydb):
                                 data = ({'tg_id': person_id})
                                 mycursor.execute(sql, data)
                                 myresult3 = mycursor.fetchall()
-                                if myresult3[0]>=3:
+                                if myresult3[0][0]>=3:
                                     message = ('Число участников данной команды достигло максимального значения. ' +
                                                    'Пожалуйста, введите идентификатор другой команды или создайте свою в главном меню.')
                                     send_mess(person_id, message, keyboard_cancel)
