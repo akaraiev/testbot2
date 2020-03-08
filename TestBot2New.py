@@ -341,7 +341,7 @@ def bot_messages(request, mycursor, mydb):
                                 else:
                                     if myresult[0][3]>=3:
                                         message = ('Число участников данной команды достигло максимального значения. ' +
-                                                   'Пожалуйста, введите идентафикатор другой команды или создайте свою в главном меню.')
+                                                   'Пожалуйста, введите идентификатор другой команды или создайте свою в главном меню.')
                                         send_mess(person_id, message, keyboard_cancel)
                                     else:
                                         message = ('Вы действительно хотите присоединиться к команде *' + myresult[0][1] +
@@ -361,9 +361,9 @@ def bot_messages(request, mycursor, mydb):
                                         insert_data = ({'t_id':myresult[0][0], 'tg_id': person_id})
                                         mycursor.execute(insert_member, insert_data)
                                         mydb.commit()
-                                        update_status = ("UPDATE teams SET num=num+1 WHERE creator = %(tg_id)s")
-                                        mycursor.execute(update_status, {'tg_id': int(first_result['message']['text'])})
-                                        mydb.commit()
+                                        #update_status = ("UPDATE teams SET num=num+1 WHERE creator = %(tg_id)s")
+                                        #mycursor.execute(update_status, {'tg_id': int(first_result['message']['text'])})
+                                        #mydb.commit()
                             else:
                                 message = 'Введите, пожалуйста, корректное значение идентификатора.'
                                 send_mess(person_id, message, keyboard_cancel)
@@ -374,9 +374,9 @@ def bot_messages(request, mycursor, mydb):
                                 mycursor.execute(update_status, {'tg_id': person_id})
                                 mydb.commit()
                                 
-                                update_status = ("UPDATE teams SET num=num-1 WHERE id = (SELECT team_id FROM team_members WHERE telegram_id = %(tg_id)s)")
-                                mycursor.execute(update_status, {'tg_id': person_id})
-                                mydb.commit()
+                                #update_status = ("UPDATE teams SET num=num-1 WHERE id = (SELECT team_id FROM team_members WHERE telegram_id = %(tg_id)s)")
+                                #mycursor.execute(update_status, {'tg_id': person_id})
+                                #mydb.commit()
                                 sql = ("DELETE FROM team_members WHERE telegram_id = %(tg_id)s")
                                 mycursor.execute(sql, {'tg_id': person_id})
                                 mydb.commit()
@@ -396,32 +396,51 @@ def bot_messages(request, mycursor, mydb):
                                 update_status = ("UPDATE bot_users SET status = 1 WHERE telegram_id = %(tg_id)s")
                                 mycursor.execute(update_status, {'tg_id': person_id})
                                 mydb.commit()
-                                update_status = ("UPDATE teams SET nun=num-1 WHERE id = (SELECT team_id FROM team_members WHERE telegram_id = %(tg_id)s)")
-                                mycursor.execute(update_status, {'tg_id': myresult2[0][1]})
-                                mydb.commit()
+                                #update_status = ("UPDATE teams SET nun=num-1 WHERE id = (SELECT team_id FROM team_members WHERE telegram_id = %(tg_id)s)")
+                                #mycursor.execute(update_status, {'tg_id': myresult2[0][1]})
+                                #mydb.commit()
                                 sql = ("DELETE FROM team_members WHERE telegram_id = %(tg_id)s")
                                 mycursor.execute(update_status, {'tg_id': person_id})
                                 mydb.commit()
                             else:
-                                send_mess(person_id,'Вы успешно вошли в состав команды.', keyboard_user_reg)
-                                sql = ("SELECT creator FROM teams WHERE id = (SELECT team_id FROM team_members WHERE telegram_id = %(tg_id)s)")
-                                mycursor.execute(sql, {'tg_id': person_id})
-                                myresult = mycursor.fetchall()
-                                message = ('В Вашу команду успешно добавлен *' + first_result['message']['text'] + '*.')
-                                send_mess_nokeyboard(myresult[0][0], message, 'Markdown')
-                                update_status = ("UPDATE bot_users SET status = 1, is_reg = 1 WHERE telegram_id = %(tg_id)s")
-                                mycursor.execute(update_status, {'tg_id': person_id})
-                                mydb.commit()
-                                update_status = ("UPDATE team_members SET name = %(name)s WHERE telegram_id = %(tg_id)s")
-                                mycursor.execute(update_status, {'name': first_result['message']['text'], 'tg_id': person_id})
-                                mydb.commit()
-                                insert_team = ("INSERT INTO tournament (team_id) "
-                                               "VALUES (%(team_id)s)")
-                                sql = ("SELECT team_id FROM team_members WHERE telegram_id = %(tg_id)s")
-                                mycursor.execute(sql, {'tg_id': person_id})
-                                myresult = mycursor.fetchall()
-                                mycursor.execute(insert_team, {'team_id': myresult[0][0]})
-                                mydb.commit()
+                                sql = ("SELECT num FROM teams WHERE id = (SELECT team_id FROM team_members WHERE telegram_id = %(tg_id)s)")
+                                data = ({'tg_id': person_id})
+                                mycursor.execute(sql, data)
+                                myresult3 = mycursor.fetchall()
+                                if myresult3[0]>=3:
+                                    message = ('Число участников данной команды достигло максимального значения. ' +
+                                                   'Пожалуйста, введите идентификатор другой команды или создайте свою в главном меню.')
+                                    send_mess(person_id, message, keyboard_cancel)
+                                    update_status = ("UPDATE bot_users SET status = 7 WHERE telegram_id = %(tg_id)s")
+                                    mycursor.execute(update_status, {'tg_id': person_id})
+                                    mydb.commit()
+                                    sql = ("DELETE FROM team_members WHERE telegram_id = %(tg_id)s")
+                                    mycursor.execute(update_status, {'tg_id': person_id})
+                                    mydb.commit()
+                                else:
+                                    send_mess(person_id,'Вы успешно вошли в состав команды.', keyboard_user_reg)
+                                    sql = ("SELECT creator FROM teams WHERE id = (SELECT team_id FROM team_members WHERE telegram_id = %(tg_id)s)")
+                                    mycursor.execute(sql, {'tg_id': person_id})
+                                    myresult = mycursor.fetchall()
+                                    message = ('В Вашу команду успешно добавлен *' + first_result['message']['text'] + '*.')
+                                    send_mess_nokeyboard(myresult[0][0], message, 'Markdown')
+                                    update_status = ("UPDATE bot_users SET status = 1, is_reg = 1 WHERE telegram_id = %(tg_id)s")
+                                    mycursor.execute(update_status, {'tg_id': person_id})
+                                    mydb.commit()
+                                    update_status = ("UPDATE team_members SET name = %(name)s WHERE telegram_id = %(tg_id)s")
+                                    mycursor.execute(update_status, {'name': first_result['message']['text'], 'tg_id': person_id})
+                                    mydb.commit()
+                                    update_status = ("UPDATE teams SET num=num+1 WHERE creator = %(tg_id)s")
+                                    mycursor.execute(update_status, {'tg_id': myresult[0])})
+                                    mydb.commit()
+                                    if myresult3[0]==1:
+                                        insert_team = ("INSERT INTO tournament (team_id) "
+                                                       "VALUES (%(team_id)s)")
+                                        sql = ("SELECT team_id FROM team_members WHERE telegram_id = %(tg_id)s")
+                                        mycursor.execute(sql, {'tg_id': person_id})
+                                        myresult = mycursor.fetchall()
+                                        mycursor.execute(insert_team, {'team_id': myresult[0][0]})
+                                        mydb.commit()
                     else:
                         sql = "SELECT * FROM `team_members` WHERE `telegram_id` = %(tg_id)s"
                         mycursor.execute(sql, {'tg_id': person_id})
@@ -527,11 +546,26 @@ def bot_messages(request, mycursor, mydb):
                                                     mycursor.execute(sql, {'t_id': team_id})
                                                     myresult = mycursor.fetchall()
                                                     for i in myresult:
-                                                        send_mess(i[0], message, keyboard_game)
-                                                        send_mess(i[0], 'Текущие результаты!', keyboard_results)
-                                                        update_status = ("UPDATE `team_members` SET `in_game` = 1 WHERE `telegram_id` = %(tg_id)s")
-                                                        mycursor.execute(update_status, {'tg_id': i[0]})
-                                                        mydb.commit()
+                                                        sql = ("SELECT is_reg FROM bot_users WHERE telegram_id = %(tg_id)s")
+                                                        mycursor.execute(sql, {'tg_id': i[0]})
+                                                        myresult2 = mycursor.fetchall()
+                                                        if myresult2[0]:
+                                                            send_mess(i[0], message, keyboard_game)
+                                                            send_mess(i[0], 'Текущие результаты!', keyboard_results)
+                                                            update_status = ("UPDATE `team_members` SET `in_game` = 1 WHERE `telegram_id` = %(tg_id)s")
+                                                            mycursor.execute(update_status, {'tg_id': i[0]})
+                                                            mydb.commit()
+                                                        else:
+                                                            message2 = ("Команда, в которую Вы пытались добавиться, только что начала игру."
+                                                                       " Введите, пожалуйста, идентификатор ругой команды.")
+                                                            send_mess(i[0], message2, keyboard_cancel)
+                                                            sql = ("UPDATE bot_users SET status = 7 WHERE telegram_id = %(tg_id)s")
+                                                            mycursor.execute(update_status, {'tg_id': i[0]})
+                                                            mydb.commit()
+                                                            sql = ("DELETE FROM team_members WHERE telegram_id = %(tg_id)s")
+                                                            mycursor.execute(update_status, {'tg_id': person_id})
+                                                            mydb.commit()
+                                                            
                                     else:
                                         send_mess(person_id, 'Пожалуйста, выберите действие из предложенных.', keyboard_user_capitan)
                                 elif status==2:
@@ -686,11 +720,25 @@ def bot_messages(request, mycursor, mydb):
                                                     mycursor.execute(sql, {'t_id': team_id})
                                                     myresult = mycursor.fetchall()
                                                     for i in myresult:
-                                                        send_mess(i[0], message, keyboard_game)
-                                                        send_mess(i[0], 'Текущие результаты!', keyboard_results)
-                                                        update_status = ("UPDATE `team_members` SET `in_game` = 1 WHERE `telegram_id` = %(tg_id)s")
-                                                        mycursor.execute(update_status, {'tg_id': i[0]})
-                                                        mydb.commit()
+                                                        sql = ("SELECT is_reg FROM bot_users WHERE telegram_id = %(tg_id)s")
+                                                        mycursor.execute(sql, {'tg_id': i[0]})
+                                                        myresult2 = mycursor.fetchall()
+                                                        if myresult2[0]:
+                                                            send_mess(i[0], message, keyboard_game)
+                                                            send_mess(i[0], 'Текущие результаты!', keyboard_results)
+                                                            update_status = ("UPDATE `team_members` SET `in_game` = 1 WHERE `telegram_id` = %(tg_id)s")
+                                                            mycursor.execute(update_status, {'tg_id': i[0]})
+                                                            mydb.commit()
+                                                        else:
+                                                            message2 = ("Команда, в которую Вы пытались добавиться, только что начала игру."
+                                                                       " Введите, пожалуйста, идентификатор ругой команды.")
+                                                            send_mess(i[0], message2, keyboard_cancel)
+                                                            sql = ("UPDATE bot_users SET status = 7 WHERE telegram_id = %(tg_id)s")
+                                                            mycursor.execute(update_status, {'tg_id': i[0]})
+                                                            mydb.commit()
+                                                            sql = ("DELETE FROM team_members WHERE telegram_id = %(tg_id)s")
+                                                            mycursor.execute(update_status, {'tg_id': person_id})
+                                                            mydb.commit()
                                                         
                                     else:
                                         send_mess(person_id, 'Пожалуйста, выберите действие из предложенных.', keyboard_user_reg)
