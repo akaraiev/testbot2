@@ -433,7 +433,7 @@ def bot_messages(request, mycursor, mydb):
                                     update_status = ("UPDATE teams SET num=num+1 WHERE creator = %(tg_id)s")
                                     mycursor.execute(update_status, {'tg_id': myresult[0][0]})
                                     mydb.commit()
-                                    if myresult3[0]==1:
+                                    if myresult3[0][0]==1:
                                         insert_team = ("INSERT INTO tournament (team_id) "
                                                        "VALUES (%(team_id)s)")
                                         sql = ("SELECT team_id FROM team_members WHERE telegram_id = %(tg_id)s")
