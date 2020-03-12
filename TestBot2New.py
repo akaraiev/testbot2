@@ -1446,7 +1446,7 @@ def bot_messages(request, mycursor, mydb):
                             mydb.commit()
                             message = ('Выберите адресатов вашего сообщения.')
                             send_mess(person_id, message, keyboard_admin_message)
-                        elif first_result['message']['text']=='Зарегистированные команды':
+                        elif first_result['message']['text']=='Зарегистрированные команды':
                             sql = ("SELECT * FROM teams")
                             mycursor.execute(sql)
                             myresult = mycursor.fetchall()
