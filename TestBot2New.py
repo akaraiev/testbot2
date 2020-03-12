@@ -85,9 +85,9 @@ media = ['https://upload.wikimedia.org/wikipedia/commons/8/85/Tour_Eiffel_Wikime
          'https://upload.wikimedia.org/wikipedia/commons/5/53/Colosseum_in_Rome%2C_Italy_-_April_2007.jpg',
          'https://upload.wikimedia.org/wikipedia/commons/f/fd/Brandenburgertor_SN.jpg',
          'https://upload.wikimedia.org/wikipedia/commons/6/6d/Nelson%27s_Column%2C_Trafalgar_Square%2C_London.JPG',
-         'https://upload.wikimedia.org/wikipedia/commons/c/cd/Sydneyoperahouse_at_night.jpg',
+         'https://awesomeworld.ru/wp-content/uploads/2015/04/Sidneyskiy_opernyy_teatr_3-700x400.jpg',
          'https://upload.wikimedia.org/wikipedia/commons/3/38/%28Ireland%29_Dublin_Castle_Up_Yard.JPG',
-         'https://upload.wikimedia.org/wikipedia/commons/8/8d/Ch%C3%A2teau_de_Sch%C3%B6nbrunn_Vienne.jpg',
+         'https://traveltheworld.com.ua/wp-content/uploads/2014/11/%D0%94%D0%B2%D0%BE%D1%80%D0%B5%D1%86-%D0%A8%D0%B5%D0%BD%D0%B1%D1%80%D1%83%D0%BD%D0%BD.jpg',
          'https://weatlas.com/img/landmarks/d9a002ce1371622d0b8dc76a75b4abc4.jpg',
          'https://upload.wikimedia.org/wikipedia/commons/a/a9/BudapestCastle_028.jpg',
          'https://upload.wikimedia.org/wikipedia/commons/5/51/Beogradska_tvr%C4%91ava_0051_27.JPG',
@@ -96,9 +96,9 @@ media = ['https://upload.wikimedia.org/wikipedia/commons/8/85/Tour_Eiffel_Wikime
          'https://upload.wikimedia.org/wikipedia/commons/9/91/Brussels_floral_carpet_B.jpg',
          'https://upload.wikimedia.org/wikipedia/commons/4/49/Torre_de_Belem_20050728.jpg',
          'https://upload.wikimedia.org/wikipedia/commons/b/b9/Muenster_Bern.jpg',
-         'https://upload.wikimedia.org/wikipedia/commons/5/5c/Warszawa-Zamek_Kr%C3%B3lewski.jpg',
+         'https://gopolsha.com/wp-content/uploads/2018/11/Korolevskij-zamok-v-Varshave.jpg',
          'https://upload.wikimedia.org/wikipedia/commons/8/89/Copenhagen_amalienborg_seen_from_opera_house.jpg',
-         'https://upload.wikimedia.org/wikipedia/commons/2/27/Lutheran_Cathedral_Helsinki.jpg',
+         'https://static.tonkosti.ru/images/8/8d/%D0%9A%D0%B0%D1%84%D0%B5%D0%B4%D1%80%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9_%D1%81%D0%BE%D0%B1%D0%BE%D1%80_%D0%B2_%D0%A5%D0%B5%D0%BB%D1%8C%D1%81%D0%B8%D0%BD%D0%BA%D0%B8%2C_%D0%A4%D0%B8%D0%BD%D0%BB%D1%8F%D0%BD%D0%B4%D0%B8%D1%8F.jpg',
          'http://smapse.ru/storage/2018/10/3744881.jpg',
          'http://itinery.com.ua/img/folder_2/2027/9326_800x600_621x466-cb952e89b88d5a53bffcb1bcc00dbc57.jpg'
     ]
