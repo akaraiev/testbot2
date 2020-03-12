@@ -399,7 +399,7 @@ def bot_messages(request, mycursor, mydb):
                                         sql = ("SELECT in_game FROM team_members WHERE telegram_id = %(tg_id)s")
                                         mycursor.execute(sql, {'tg_id': int(first_result['message']['text'])})
                                         myresult6 = mycursor.fetchall()
-                                        if not myresult6[0][0][0]:
+                                        if not myresult6[0][0]:
                                             message = ('Вы действительно хотите присоединиться к команде *' + myresult[0][1] +
                                                        '*, представляющей учебное заведение *' + myresult[0][2] +
                                                        '*, капитан команды - *')
