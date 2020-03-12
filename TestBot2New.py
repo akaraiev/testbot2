@@ -895,8 +895,9 @@ def bot_messages(request, mycursor, mydb):
                                                 mycursor.execute(update_status, {'st': int(first_result['message']['text'])+1,'tg_id': person_id})
                                                 mydb.commit()
                                             else:
-                                                message = questions[i-1] + '\n' + '*' + format_questions[i-1] + '*'
-                                                send_photo(person_id, media[i-1], message, keyboard_game_question, 'Markdown')
+                                                message = (questions[int(first_result['message']['text'])-1] + '\n' +
+                                                           '*' + format_questions[int(first_result['message']['text'])-1] + '*')
+                                                send_photo(person_id, media[int(first_result['message']['text'])-1], message, keyboard_game_question, 'Markdown')
                                         else:
                                             message = 'Ваша команда уже ответила на этот вопрос, пожалуйста, выберите другой.'
                                             sql = ("SELECT * FROM tournament WHERE team_id=%(t_id)s")
