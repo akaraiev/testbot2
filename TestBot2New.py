@@ -396,7 +396,7 @@ def bot_messages(request, mycursor, mydb):
                                                    'Пожалуйста, введите идентификатор другой команды или создайте свою в главном меню.')
                                         send_mess(person_id, message, keyboard_cancel)
                                     else:
-                                        sql = ("SELECT in_game FROM team_members WHERE creator = %(tg_id)s")
+                                        sql = ("SELECT in_game FROM team_members WHERE telegram_id = %(tg_id)s")
                                         mycursor.execute(sql, {'tg_id': int(first_result['message']['text'])})
                                         myresult6 = mycursor.fetchall()
                                         if not myresult6[0][0][0]:
