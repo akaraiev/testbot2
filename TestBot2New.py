@@ -12,7 +12,7 @@ time_frozen = 1583704800
 
 time_finish = 1583704800
 
-keyboard_admin = json.dumps({'keyboard':[['Вопросы'], ['Сообщение участникам']],'resize_keyboard': True })
+keyboard_admin = json.dumps({'keyboard':[['Вопросы'], ['Сообщение участникам'], ['Зарегистрированные команды']],'resize_keyboard': True })
 keyboard_admin_message = json.dumps({'keyboard':[['Все пользователи'], ['Все зарегистрированные пользователи'], ['Все пользователи в игре'], ['Назад']],'resize_keyboard': True })
 keyboard_admin_send = json.dumps({'keyboard':[['Назад']],'resize_keyboard': True })
 
@@ -1446,6 +1446,19 @@ def bot_messages(request, mycursor, mydb):
                             mydb.commit()
                             message = ('Выберите адресатов вашего сообщения.')
                             send_mess(person_id, message, keyboard_admin_message)
+                        elif first_result['message']['text']=='Зарегистированные команды':
+                            sql = ("SELECT * FROM teams")
+                            mycursor.execute(sql)
+                            myresult = mycursor.fetchall()
+                            if not myresult:
+                                send_mess(person_id,'Зарегистрированных команд пока нет.', keyboard_admin)
+                            else:
+                                message = 'Список зарегистрированных команд:\n№ id_team Название команды Школа Количество'
+                                j = 1
+                                for i in myresult:
+                                    message = message + '\n' + str(j) + '. ' + i[0] + ' ' + i[1] + ' ' + i[2] + ' ' + i[3]
+                                    j = j + 1
+                                send_mess(person_id, message, keyboard_admin)
                     elif status == 2:
                         if first_result['message']['text']!='В главное меню':
                             sql = "SELECT * FROM `questions_to_admin`"
@@ -1630,7 +1643,7 @@ def bot_messages(request, mycursor, mydb):
                                     sql = ("UPDATE team_members SET phone_number = %(phone)s WHERE telegram_id = %(tg_id)s")
                                     mycursor.execute(sql, {'phone': first_result['message']['contact']['phone_number'],'tg_id': person_id})
                                     mydb.commit()
-                                    if myresult3[0][0]==1:
+                                    if myresult3[0][0] == 1:
                                         insert_team = ("INSERT INTO tournament (team_id) "
                                                        "VALUES (%(team_id)s)")
                                         sql = ("SELECT team_id FROM team_members WHERE telegram_id = %(tg_id)s")
