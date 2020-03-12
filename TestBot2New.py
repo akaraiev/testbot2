@@ -25,6 +25,7 @@ keyboard_user_registration = json.dumps({'keyboard':[['Назад','В глав�
 keyboard_user_registration_team_number = json.dumps({'keyboard':[['2', '3', '4'],['Назад','В главное меню']],'resize_keyboard': True })
 keyboard_user_registration_accept_team = json.dumps({'keyboard':[['Да', 'Исправить'], ['Назад','В главное меню']],'resize_keyboard': True })
 keyboard_default = json.dumps({'remove_keyboard': True })
+keyboard_phone = json.dumps({'keyboard':[[{'text': 'Отправить свой номер', 'request_contact': True}], ['Назад']],'resize_keyboard': True })
 
 button_results = {'text': 'Текущие результаты', 'url': 'http://energy-storm.com.ua/results'}
 keyboard_results = json.dumps({'inline_keyboard': [[button_results]]})
@@ -271,7 +272,7 @@ def bot_messages(request, mycursor, mydb):
                                 mydb.commit()
                             elif first_result['message']['text']=='Да':
                                 message = ('Новая команда успешно создана. ' +
-                                           'Для окончания регистрации команды введите, пожалуйста, информацию о себе в формате: Имя Фамилия. \n' +
+                                           'Введите, пожалуйста, информацию о себе в формате: Имя Фамилия. \n' +
                                            'Например: Михаил Алексеев.' )
                                 send_mess(person_id, message, keyboard_user_registration)
                                 update_status = ("UPDATE `bot_users` SET `status` = %(stat)s WHERE `telegram_id` = %(tg_id)s")
@@ -301,8 +302,8 @@ def bot_messages(request, mycursor, mydb):
                             else:
                                 message = ( 'Регистрация команды успешна! Для того, чтобы Ваши друзья могли к Вам присоединиться, ' +
                                             'им следует выбрать пункт меню "Присоединиться к команде" и '
-                                            'использавать идентификатор ' + str(person_id) +'. Следите за новостями нашего проекта!')
-                                send_mess(person_id, message, keyboard_user_capitan)
+                                            'использовать идентификатор ' + str(person_id) +'.\nДля окончания регистрации отправьте свой номер телефона.')
+                                send_mess(person_id, message, keyboard_phone)
                                 sql = "SELECT * FROM `team_members` WHERE `telegram_id` = %(tg_id)s"
                                 mycursor.execute(sql, {'tg_id': person_id})
                                 user = mycursor.fetchall()
@@ -321,8 +322,8 @@ def bot_messages(request, mycursor, mydb):
                                     insert_data = ({'name': first_result['message']['text'], 't_id': team[0][0], 'tg_id': person_id})
                                     mycursor.execute(update_member, insert_data)
                                     mydb.commit()
-                                update_status = ("UPDATE `bot_users` SET `status` = %(stat)s, `is_reg`=1 WHERE `telegram_id` = %(tg_id)s")
-                                mycursor.execute(update_status, {'stat': 1, 'tg_id': person_id})
+                                update_status = ("UPDATE `bot_users` SET `status` = %(stat)s WHERE `telegram_id` = %(tg_id)s")
+                                mycursor.execute(update_status, {'stat': 10, 'tg_id': person_id})
                                 mydb.commit()
                         elif status==7:
                             if first_result['message']['text']=='В главное меню':
@@ -441,6 +442,17 @@ def bot_messages(request, mycursor, mydb):
                                         myresult = mycursor.fetchall()
                                         mycursor.execute(insert_team, {'team_id': myresult[0][0]})
                                         mydb.commit()
+                        elif status==10:
+                            if first_result['message']['text']=='Назад':
+                                message = ('Введите, пожалуйста, информацию о себе в формате: Имя Фамилия. \n' +
+                                           'Например: Михаил Алексеев.' )
+                                send_mess(person_id, message, keyboard_user_registration)
+                                update_status = ("UPDATE `bot_users` SET `status` = %(stat)s WHERE `telegram_id` = %(tg_id)s")
+                                mycursor.execute(update_status, {'stat': 6, 'tg_id': person_id})
+                                mydb.commit()
+                            else:
+                                message = ('Сделайте, пожалуйста, корректный выбор.')
+                                send_mess(person_id, message, keyboard_phone)
                     else:
                         sql = "SELECT * FROM `team_members` WHERE `telegram_id` = %(tg_id)s"
                         mycursor.execute(sql, {'tg_id': person_id})
@@ -1552,6 +1564,19 @@ def bot_messages(request, mycursor, mydb):
                             mydb.commit()
                             message = ('Выберите адресатов вашего сообщения.')
                             send_mess(person_id, message, keyboard_admin_message)
+            else:
+                if 'contact' in first_result['message'].keys():
+                    if not is_admin:
+                        if not is_reg:
+                            if status==10:
+                                message = ('Регистрация успешна!')
+                                send_mess(person_id, message, keyboard_user_capitan)
+                                sql = ("UPDATE bot_users SET status = 1, is_reg = 1 WHERE telegram_id = %(tg_id)s")
+                                mycursor.execute(sql, {'tg_id': person_id})
+                                mydb.commit()
+                                sql = ("UPDATE team_members SET phone_number = %(phone)s WHERE telegram_id = %(tg_id)s")
+                                mycursor.execute(sql, {'phone': int(first_result['message']['contact']['phone_number']),'tg_id': person_id})
+                                mydb.commit()
                             
             k = k+1
             if 'text' in first_result['message'].keys():
