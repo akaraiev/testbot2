@@ -1456,7 +1456,7 @@ def bot_messages(request, mycursor, mydb):
                                 message = 'Список зарегистрированных команд:\n№ id_team Название команды Школа Количество'
                                 j = 1
                                 for i in myresult:
-                                    message = message + '\n' + str(j) + '. ' + i[0] + ' ' + i[1] + ' ' + i[2] + ' ' + i[3]
+                                    message = message + '\n' + str(j) + '. ' + str(i[0]) + ' ' + i[1] + ' ' + i[2] + ' ' + str(i[3])
                                     j = j + 1
                                 send_mess(person_id, message, keyboard_admin)
                     elif status == 2:
