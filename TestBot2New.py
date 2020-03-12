@@ -1575,7 +1575,7 @@ def bot_messages(request, mycursor, mydb):
                                 mycursor.execute(sql, {'tg_id': person_id})
                                 mydb.commit()
                                 sql = ("UPDATE team_members SET phone_number = %(phone)s WHERE telegram_id = %(tg_id)s")
-                                mycursor.execute(sql, {'phone': int(first_result['message']['contact']['phone_number']),'tg_id': person_id})
+                                mycursor.execute(sql, {'phone': first_result['message']['contact']['phone_number'],'tg_id': person_id})
                                 mydb.commit()
                             
             k = k+1
