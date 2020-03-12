@@ -39,47 +39,89 @@ game_keyboard2 = ['6', '7', '8', '9', '10']
 game_keyboard3 = ['11', '12', '13', '14', '15']
 game_keyboard4 = ['16', '17', '18', '19', '20']
 
-questions = ['Столица Швеции - ... ? Формат ответа - слово кириллицей с заглавной буквы.',
-             '2*3+5/5*4+1 = ... ? Формат ответа - число.',
-             'Фамилия главного героя романа "Идиот". Формат ответа - слово кириллицей с заклавной буквы.',
-             'Название последнего студийного альбома группы The Beatles. Формат ответа - предложение латиницей маленькими буквами.',
-             'Единица измерения количества вещества в системе СИ. Формат ответа - слово кириллицей маленькими буквами.',
-             'Фамилия футболиста, обладателя Золотого Мяча 1962 года. Формат ответа - слово кириллицей с заглавной буквы.',
-             'Имя и фамилия физика, открывшего явление дифракции рентгеновских лучей на кристаллах. Формат ответа - три слова киллицей маленькими буквами.',
-             'Фамилия второго чемпиона мира по шахматам. Формат ответа - слово кириллицей с заглавной буквы.',
-             'Год начала Второй мировой войны. Формат ответа - число.',
-             'Физическое явление, проявляющееся в резком увеличении амплитуды стационарных колебаний при совпадении частоты внешнего воздествия с собственными частотами системы. Формат ответа - слово кириллицей маленькими буквами.',
-             'Фамилия обладателя премии Оскар за лучшую мужскую роль второго плана 1984 года. Формат ответа - слово кириллицей с большой буквы.',
-             'Высокоуровневый язык программирования, на котором был написан данный бот. Формат ответа - слово латиницей с большой буквы.',
-             'Музыкальный интервал шириной в пять ступеней. Формат ответа - слово кириллицей маленькими буквами.',
-             'Луч, исходящий из вершины угла и делящий улог на два равных. Формат ответа - слово кириллицей маленькими буквами.',
-             'Кроссплатформенный месседжер, в котором размещен данный бот. Формат ответа - слово латиницей маленькими буквами.',
-             'Жаргонное прозвище, данное испанскими националистами советскому истребителю И-16 во время Гражданской войны в Испании. Формат ответа - слово латиницей маленькими буквами.',
-             'Значение производной от постоянной функции в любой точке. Формат ответа - число.',
-             'Псевдоним писателя, имя которого носил Харьковский университет с 1936 по 1999 год. Формат ответа - слово кириллицей с заглавной буквы.',
-             'Струнно-смычковый инструмент, струны которого в классическом строе настроены на квинту ниже скрипичных. Формат ответа - слово кириллицей маленькими буквами.',
-             '1-0= ...?'
+questions = ['Какой город изображен на фото?',
+             'Какой город изображен на фото?',
+             'Какой город изображен на фото?',
+             'Какой город изображен на фото?',
+             'Какой город изображен на фото?',
+             'Какой город изображен на фото?',
+             'Какой город изображен на фото?',
+             'Какой город изображен на фото?',
+             'Какой город изображен на фото?',
+             'Какой город изображен на фото?',
+             'Какой город изображен на фото?',
+             'Какой город изображен на фото?',
+             'Какой город изображен на фото?',
+             'Какой город изображен на фото?',
+             'Какой город изображен на фото?',
+             'Какой город изображен на фото?',
+             'Какой город изображен на фото?',
+             'Какой город изображен на фото?',
+             'Какой город изображен на фото?',
+             'Какой город изображен на фото?'
              ]
-answers = ['Стокгольм',
-           '11',
-           'Мышкин',
-           'let it be',
-           'моль',
-           'Масопуст',
-           'макс фон лауэ',
-           'Ласкер',
-           '1939',
-           'резонанс',
-           'Николсон',
-           'Python',
-           'квинта',
-           'биссектриса',
-           'telegram',
-           'rata',
-           '0',
-           'Горький',
-           'альт',
-           '1'
+format_questions = ['слово кириллицей с заглавной буквы.',
+                    'слово кириллицей с заглавной буквы.',
+                    'слово кириллицей с заглавной буквы.',
+                    'слово кириллицей с заглавной буквы.',
+                    'слово кириллицей с заглавной буквы.',
+                    'слово кириллицей с заглавной буквы.',
+                    'слово кириллицей с заглавной буквы.',
+                    'слово кириллицей с заглавной буквы.',
+                    'слово кириллицей с заглавной буквы.',
+                    'слово кириллицей с заглавной буквы.',
+                    'слово кириллицей с заглавной буквы.',
+                    'слово кириллицей с заглавной буквы.',
+                    'слово кириллицей с заглавной буквы.',
+                    'слово кириллицей с заглавной буквы.',
+                    'слово кириллицей с заглавной буквы.',
+                    'слово кириллицей с заглавной буквы.',
+                    'слово кириллицей с заглавной буквы.',
+                    'слово кириллицей с заглавной буквы.',
+                    'слово кириллицей с заглавной буквы.',
+                    'слово кириллицей с заглавной буквы.'
+    ]
+media = ['https://upload.wikimedia.org/wikipedia/commons/8/85/Tour_Eiffel_Wikimedia_Commons_%28cropped%29.jpg',
+         'https://upload.wikimedia.org/wikipedia/commons/5/53/Colosseum_in_Rome%2C_Italy_-_April_2007.jpg',
+         'https://upload.wikimedia.org/wikipedia/commons/f/fd/Brandenburgertor_SN.jpg',
+         'https://upload.wikimedia.org/wikipedia/commons/6/6d/Nelson%27s_Column%2C_Trafalgar_Square%2C_London.JPG',
+         'https://upload.wikimedia.org/wikipedia/commons/c/cd/Sydneyoperahouse_at_night.jpg',
+         'https://upload.wikimedia.org/wikipedia/commons/3/38/%28Ireland%29_Dublin_Castle_Up_Yard.JPG',
+         'https://upload.wikimedia.org/wikipedia/commons/8/8d/Ch%C3%A2teau_de_Sch%C3%B6nbrunn_Vienne.jpg',
+         'https://weatlas.com/img/landmarks/d9a002ce1371622d0b8dc76a75b4abc4.jpg',
+         'https://upload.wikimedia.org/wikipedia/commons/a/a9/BudapestCastle_028.jpg',
+         'https://upload.wikimedia.org/wikipedia/commons/5/51/Beogradska_tvr%C4%91ava_0051_27.JPG',
+         'https://upload.wikimedia.org/wikipedia/commons/5/57/Kungliga_slottet_helikopter_2.JPG',
+         'https://upload.wikimedia.org/wikipedia/commons/3/34/Van_Gogh_Museum.jpg',
+         'https://upload.wikimedia.org/wikipedia/commons/9/91/Brussels_floral_carpet_B.jpg',
+         'https://upload.wikimedia.org/wikipedia/commons/4/49/Torre_de_Belem_20050728.jpg',
+         'https://upload.wikimedia.org/wikipedia/commons/b/b9/Muenster_Bern.jpg',
+         'https://upload.wikimedia.org/wikipedia/commons/5/5c/Warszawa-Zamek_Kr%C3%B3lewski.jpg',
+         'https://upload.wikimedia.org/wikipedia/commons/8/89/Copenhagen_amalienborg_seen_from_opera_house.jpg',
+         'https://upload.wikimedia.org/wikipedia/commons/2/27/Lutheran_Cathedral_Helsinki.jpg',
+         'http://smapse.ru/storage/2018/10/3744881.jpg',
+         'http://itinery.com.ua/img/folder_2/2027/9326_800x600_621x466-cb952e89b88d5a53bffcb1bcc00dbc57.jpg'
+    ]
+answers = ['Париж',
+           'Рим',
+           'Берлин',
+           'Лондон',
+           'Сидней',
+           'Дублин',
+           'Вена',
+           'Прага',
+           'Будапешт',
+           'Белград',
+           'Стокгольм',
+           'Амстердам',
+           'Брюссель',
+           'Лиссабон',
+           'Берн',
+           'Варшава',
+           'Копенгаген',
+           'Хельсинки',
+           'Харьков',
+           'Чернигов'
            ]
 
 def get_updates_json(request, offset_id='None'):  
@@ -108,6 +150,11 @@ def forward_mess(chat_id, from_chat_id, message_id):
     params = {'chat_id': chat_id, 'from_chat_id': from_chat_id, 'message_id': message_id}
     response = requests.post(url + 'forwardMessage', data=params)
     return response
+
+def send_photo(chat, photo, text, reply_markup=keyboard_default, parse_mode='None'):
+    params = {'chat_id': chat, 'photo': photo, 'caption': text, 'reply_markup': reply_markup,'parse_mode': parse_mode}
+    response = requests.post(url + 'sendPhoto', data=params)
+    return response.json()
 
 def bot_messages(request, mycursor, mydb):
     
@@ -349,26 +396,34 @@ def bot_messages(request, mycursor, mydb):
                                                    'Пожалуйста, введите идентификатор другой команды или создайте свою в главном меню.')
                                         send_mess(person_id, message, keyboard_cancel)
                                     else:
-                                        message = ('Вы действительно хотите присоединиться к команде *' + myresult[0][1] +
-                                                   '*, представляющей учебное заведение *' + myresult[0][2] +
-                                                   '*, капитан команды - *')
-                                        sql2 = ("SELECT * FROM team_members WHERE telegram_id = %(tg_id)s")
-                                        data2 = ({'tg_id': int(first_result['message']['text'])})
-                                        mycursor.execute(sql2, data2)
-                                        myresult2 = mycursor.fetchall()
-                                        message = message + myresult2[0][1] + '*?'
-                                        send_mess(person_id, message, keyboard_delete_team, 'Markdown')
-                                        update_status = ("UPDATE bot_users SET status = 8 WHERE telegram_id = %(tg_id)s")
-                                        mycursor.execute(update_status, {'tg_id': person_id})
-                                        mydb.commit()
-                                        insert_member = ("INSERT INTO team_members (team_id, telegram_id) "
-                                                         "VALUES (%(t_id)s, %(tg_id)s)")
-                                        insert_data = ({'t_id':myresult[0][0], 'tg_id': person_id})
-                                        mycursor.execute(insert_member, insert_data)
-                                        mydb.commit()
-                                        #update_status = ("UPDATE teams SET num=num+1 WHERE creator = %(tg_id)s")
-                                        #mycursor.execute(update_status, {'tg_id': int(first_result['message']['text'])})
-                                        #mydb.commit()
+                                        sql = ("SELECT in_game FROM team_members WHERE creator = %(tg_id)s")
+                                        mycursor.execute(sql, {'tg_id': int(first_result['message']['text'])})
+                                        myresult6 = mycursor.fetchall()
+                                        if not myresult6[0][0][0]:
+                                            message = ('Вы действительно хотите присоединиться к команде *' + myresult[0][1] +
+                                                       '*, представляющей учебное заведение *' + myresult[0][2] +
+                                                       '*, капитан команды - *')
+                                            sql2 = ("SELECT * FROM team_members WHERE telegram_id = %(tg_id)s")
+                                            data2 = ({'tg_id': int(first_result['message']['text'])})
+                                            mycursor.execute(sql2, data2)
+                                            myresult2 = mycursor.fetchall()
+                                            message = message + myresult2[0][1] + '*?'
+                                            send_mess(person_id, message, keyboard_delete_team, 'Markdown')
+                                            update_status = ("UPDATE bot_users SET status = 8 WHERE telegram_id = %(tg_id)s")
+                                            mycursor.execute(update_status, {'tg_id': person_id})
+                                            mydb.commit()
+                                            insert_member = ("INSERT INTO team_members (team_id, telegram_id) "
+                                                             "VALUES (%(t_id)s, %(tg_id)s)")
+                                            insert_data = ({'t_id':myresult[0][0], 'tg_id': person_id})
+                                            mycursor.execute(insert_member, insert_data)
+                                            mydb.commit()
+                                            #update_status = ("UPDATE teams SET num=num+1 WHERE creator = %(tg_id)s")
+                                            #mycursor.execute(update_status, {'tg_id': int(first_result['message']['text'])})
+                                            #mydb.commit()
+                                        else:
+                                            message = ('Данная команда уже участвует в соревновании. ' +
+                                                       'Пожалуйста, введите идентификатор другой команды или создайте свою в главном меню.')
+                                            send_mess(person_id, message, keyboard_cancel)
                             else:
                                 message = 'Введите, пожалуйста, корректное значение идентификатора.'
                                 send_mess(person_id, message, keyboard_cancel)
@@ -834,10 +889,14 @@ def bot_messages(request, mycursor, mydb):
                                         mycursor.execute(sql, data)
                                         myresult = mycursor.fetchall()
                                         if myresult[0][int(first_result['message']['text'])+1]<=0:
-                                            send_mess(person_id, questions[int(first_result['message']['text'])-1], keyboard_game_question)
-                                            update_status = ("UPDATE bot_users SET status = %(st)s WHERE telegram_id = %(tg_id)s")
-                                            mycursor.execute(update_status, {'st': int(first_result['message']['text'])+1,'tg_id': person_id})
-                                            mydb.commit()
+                                            if media[int(first_result['message']['text'])-1]=='':
+                                                send_mess(person_id, questions[int(first_result['message']['text'])-1], keyboard_game_question)
+                                                update_status = ("UPDATE bot_users SET status = %(st)s WHERE telegram_id = %(tg_id)s")
+                                                mycursor.execute(update_status, {'st': int(first_result['message']['text'])+1,'tg_id': person_id})
+                                                mydb.commit()
+                                            else:
+                                                message = questions[i-1] + '\n' + '*' + format_questions[i-1] + '*'
+                                                send_photo(person_id, media[i-1], message, keyboard_game_question, 'Markdown')
                                         else:
                                             message = 'Ваша команда уже ответила на этот вопрос, пожалуйста, выберите другой.'
                                             sql = ("SELECT * FROM tournament WHERE team_id=%(t_id)s")
