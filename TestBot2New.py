@@ -463,7 +463,7 @@ def bot_messages(request, mycursor, mydb):
                                 #mycursor.execute(update_status, {'tg_id': myresult2[0][1]})
                                 #mydb.commit()
                                 sql = ("DELETE FROM team_members WHERE telegram_id = %(tg_id)s")
-                                mycursor.execute(update_status, {'tg_id': person_id})
+                                mycursor.execute(sql, {'tg_id': person_id})
                                 mydb.commit()
                             else:
                                 sql = ("SELECT num FROM teams WHERE id = (SELECT team_id FROM team_members WHERE telegram_id = %(tg_id)s)")
