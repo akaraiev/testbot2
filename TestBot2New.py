@@ -336,6 +336,9 @@ def bot_messages(request, mycursor, mydb):
                                 sql = "DELETE FROM `teams` WHERE creator=%(tg_id)s"
                                 mycursor.execute(sql, {'tg_id': person_id})
                                 mydb.commit()
+                                sql = ("DELETE FROM team_members WHERE telegram_id = %(tg_id)s")
+                                mycursor.execute(sql, {'tg_id': person_id})
+                                mydb.commit()
                             elif first_result['message']['text']=='Назад':
                                 sql = "SELECT * FROM `teams` WHERE `creator` = %(tg_id)s"
                                 mycursor.execute(sql, {'tg_id': person_id})
